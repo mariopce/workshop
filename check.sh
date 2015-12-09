@@ -20,7 +20,7 @@ function isinstalled {
    if [ ! -z "$APP" -a "$APP" != " " ]; then
         ok "$APP is installed"
     else
-        error "'$APP' is NOT installed";
+        error "APP is NOT installed. $2";
    fi
 }
 
@@ -30,8 +30,8 @@ checkevar JAVA8_HOME
 checkevar JAVA7_HOME
 checkevar ANDROID_HOME
 GIT_VER=`git --version`
-isinstalled "$GIT_VER"
+isinstalled "$GIT_VER" 
 JRE_VER=`java -version 2>&1 | head -n 1`
-isinstalled "$JRE_VER"
+isinstalled "$JRE_VER" "Try\nsudo apt-add-repository ppa:webupd8team/java\nsudo apt-get update\nsudo apt-get install oracle-java8-installer\n"
 isinstalled "`javac -version 2>&1`"
-
+isinstalled "`mvn -version 2>&1 | head -n 1`"
